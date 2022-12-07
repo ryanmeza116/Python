@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Arbortrary</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <h1 class = "mx-2">Welcome {{user.first_name}} !</h1>
+        </div>
+    </nav>
+    <div class = "d-flex justify-content-between align-items-center col-12">
+        <h6>A site to track randomly planted trees!</h6>
+        <div class = "d-flex col-2 justify-content-between ">
+            <a href = "/dashboard" class = "btn btn-success h-25">Dashboard</a>
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </div>
+    <div class = "d-flex justify-content-between col-12"></div>
+        <!-- <div class = "d-flex col-6 justify-content-start"></div> -->
+            <h1>Manage My Trees:</h1>
+            <table class = "table table-hover  col-6 ml-2">
+                <thead>
+                    <tr>
+                        <th>Species</th>
+                        <th>Date Planted</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tree in trees %}
+                        {% if tree.users_id == session.user_id %}
+                        <tr>
+                            <td>{{tree.species}}</td>
+                            <td>{{tree.created_at}}</td>
+                            <td><a href = "/delete/tree/{{tree.id}}">| Delete |</a>
+                            <a href = "/edit/tree/{{tree.id}}">| Edit |</a>
+                            {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class = col-6>
+            {% with messages = get_flashed_messages(category_filter=['tree']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Invalid Update Imput!</strong>
+                        {% for message in messages %}
+                        <p>-{{message}}-</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Arbortrary</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <a href = "/view/trees" class = "btn btn-success h-25 ">My Trees</a>
+            <h1 class = "mx-2">Welcome {{user.first_name}} !</h1>
+        </div>
+    </nav>
+    <div class = "d-flex justify-content-between align-items-center col-12">
+        <h6>A site to track randomly planted trees!</h6>
+        <div class = "d-flex col-2 justify-content-between ">
+            <a href = "/create/tree" class = "btn btn-success h-25">Plant A Tree!</a>
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </div>
+    <table class = "table table-hover  col-6 ml-2">
+        <thead>
+            <tr>
+                <th>Species</th>
+                <th>Planted by</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tree in trees %}
+                <tr>
+                    <td>{{tree.species}}</td>
+                    <td>{{tree.user.first_name}} {{tree.user.last_name}}</td>
+                    <td><a href = "/view/tree/{{tree.id}}">| Details |</a>
+                    </td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+<body>
+    <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Sasquatch Websighting</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <h1 class = "mx-2">{{user.first_name}}</h1>
+            <a href = "/new/sighting" class = "btn btn-primary h-25 ">Report a Sighting</a>
+            
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </nav>
+    <!-- h1 reported sightings // table with all sightings. WHERE/WHEN/WHO/ if owned /EDIT/DELETE -->
+    <div class = "col-8 mx-auto mt-2">
+        <h4>Current Squatch Sightings</h4>
+        <table class = "table table-hover">
+            <thead>
+                <tr>
+                    <th>WHERE</th>
+                    <th>WHEN</th>
+                    <th>WHO</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sighting in sightings %}
+                    <tr>
+                        <td>{{sighting.location}}</td>
+                        <td>{{sighting.date}}</td>
+                        <td>{{sighting.user.first_name}}  {{sighting.user.last_name}}</td>
+                        <td><a href = "/view/report/{{sighting.id}}">| View Report |</a>
+                        {% if sighting.user_id == session.user_id %}
+                        <a href = "/edit/report/{{sighting.id}}">| Edit Report |</a>
+                        <a href = "/destroy/report/{{sighting.id}}">| Delete Report |</a>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

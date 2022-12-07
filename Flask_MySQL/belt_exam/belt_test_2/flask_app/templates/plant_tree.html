@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+        <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Arbortrary</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <a href = "/view/trees" class = "btn btn-success h-25 ">My Trees</a>
+            <h1 class = "mx-2">Welcome {{user.first_name}} !</h1>
+        </div>
+    </nav>
+    <div class = "d-flex justify-content-between align-items-center col-12">
+        <h6>A site to track randomly planted trees!</h6>
+        <div class = "d-flex col-2 justify-content-between ">
+            <a href = "/dashboard" class = "btn btn-success h-25">Dashboard</a>
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </div>
+        <form action="/plant/tree" method="post" class="col-5 p-4 my-4 bg-dark text-light mx-auto">
+            <h2 class="text-primary">Arbitrarily Plant A Tree</h2>
+            {% with messages = get_flashed_messages(category_filter=['tree']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Flash AHHHHHHH!!!!</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="species" class = "font-weight-bold">Species:</label>
+                        <input type="text" name="species" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class = "font-weight-bold">location:</label>
+                        <input type="text" name="location" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="reason"> Reason:</label>
+                        <textarea name="reason"  cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_planted">Date Planted:</label>
+                        <input type="date" name="date_planted" class="form-control">
+                    </div>
+                    <br>
+                    <input type="submit" value="Add Report" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+</body>
+</html>

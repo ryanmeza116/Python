@@ -1,0 +1,36 @@
+Ninjas and Dojos
+By Ryan Meza
+
+SELECT * FROM dojos LEFT JOIN ninjas on dojos.id = ninjas.dojo_id;
+DELETE FROM dojos WHERE dojos.name = "shozen-ryu";
+DELETE FROM dojos WHERE dojos.name = "shotokan";
+DELETE FROM dojos WHERE dojos.name = "shuri-ryu";
+DELETE FROM dojos WHERE dojos.name = "ryan";
+DELETE FROM dojos WHERE dojos.name = "super dojo";
+INSERT INTO dojos (name,created_at,updated_at) VALUES ("shotokan",NOW(), NOW());
+INSERT INTO dojos (name,created_at,updated_at) VALUES ("shozen-ryu",NOW(), NOW());
+INSERT INTO dojos (name,created_at,updated_at) VALUES ("shuri-ryu",NOW(), NOW());
+--
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Ryan', "Meza", 25, NOW(), NOW(), 12);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Abby', "Meza", 26, NOW(), NOW(), 12);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Lincoln', "Meza", 3, NOW(), NOW(), 12);
+--
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Megan', "Tennant", 22, NOW(), NOW(), 13);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Zach', "Tennant", 25, NOW(), NOW(), 13);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Tenley', "Tennant", 2, NOW(), NOW(), 13);
+--
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Karli', "Soldano", 22, NOW(), NOW(), 14);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Ryan', "Soldano", 20, NOW(), NOW(), 14);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, Dojo_id) 
+VALUES ('Kyle', "Soldano", 1, NOW(), NOW(), 14);
+--
+SELECT * from dojos join ninjas on dojos.id = ninjas.Dojo_id WHERE Dojo_id = 12;
+SELECT * from dojos join ninjas on dojos.id = ninjas.Dojo_id WHERE Dojo_id = 14;

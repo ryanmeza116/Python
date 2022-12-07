@@ -1,0 +1,67 @@
+MYSQL World Queries
+By Ryan Meza. 
+
+1: "Select a query that returns all nations that speak Slovene"
+
+A: SELECT * from countries JOIN languages on countries.id = languages.country_id;
+SELECT countries.name as name, languages.language as language, languages.percentage as percentage, languages.is_official as offical_language FROM countries
+JOIN languages on countries.id = languages.country_id
+WHERE languages.language = "SLOVENE"
+order by languages.percentage DESC;
+
+2: " What query would you run to display the total number of cities for each country? 
+Your query should return the name of the country and the total number of cities. 
+Your query should arrange the result by the number of cities in descending order. (3)
+
+A: SELECT countries.name as country_name, COUNT(cities.name) as cities FROM countries JOIN cities on countries.id = cities.country_id
+GROUP BY countries.name
+ORDER BY cities DESC;
+
+3:What query would you run to get all the cities in Mexico with a population of greater than 500,000? 
+Your query should arrange the result by population in descending order. (1)
+
+A: SELECT * FROM cities;
+SELECT * FROM countries WHERE countries.name = "Mexico";
+SELECT name, population, country_id FROM cities
+WHERE cities.population > 500000
+AND cities.country_id = (SELECT id FROM countries WHERE countries.name = "Mexico")
+ORDER BY cities.population DESC;
+
+4:What query would you run to get all languages in each country with a percentage greater than 89%?
+ Your query should arrange the result by percentage in descending order. (1)
+
+A:SELECT countries.name as name, languages.language as language, languages.percentage as percentage FROM countries
+JOIN languages on countries.id = languages.country_id
+WHERE languages.percentage > 89
+ORDER BY languages.percentage DESC;
+
+
+5:. What query would you run to get all the countries with Surface Area below 501 and Population greater than 100,000? (2)
+SELECT * FROM countries;
+SELECT countries.name as name, countries.surface_area as surface_area, countries.population as population FROM countries
+WHERE countries.surface_area < 501 AND countries.population > 100000
+ORDER BY countries.surface_area DESC;
+
+6:What query would you run to get countries with only Constitutional Monarchy with a capital greater than 200 and a life expectancy greater than 75 years? (1)
+
+A: SELECT countries.name as name, countries.government_form as government, countries.capital as capital, countries.life_expectancy as life_expectancy FROM countries
+WHERE countries.government_form = "Constitutional Monarchy" AND countries.capital > 200 AND countries.life_expectancy > 75
+ORDER BY countries.life_expectancy DESC; 
+
+7: . What query would you run to get all the cities of Argentina inside the Buenos Aires district and have the population greater than 500, 000? 
+The query should return the Country Name, City Name, District and Population. (2)
+A: 
+SELECT countries.name as country_name, cities.name as city_name, cities.district, cities.population from countries
+JOIN cities ON countries.id = cities.country_id
+WHERE cities.district = "Buenos Aires"
+AND cities.population > 500000
+ORDER BY cities.population DESC;
+
+8:  What query would you run to summarize the number of countries in each region? 
+The query should display the name of the region and the number of countries. 
+Also, the query should arrange the result by the number of countries in descending order. (2)
+A:
+SELECT countries.region, COUNT(countries.name) as countries
+FROM countries
+GROUP BY countries.region
+ORDER BY countries DESC

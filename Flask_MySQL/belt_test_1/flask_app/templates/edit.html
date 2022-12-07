@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+    crossorigin="anonymous">
+    <title>Update Report</title>
+</head>
+<body>
+    <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Update Report</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <h1 class = "mx-2">{{user.first_name}}</h1>
+            <a href = "/dashboard" class = "btn btn-primary h-25">Return Home</a>
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </nav>
+    <form action="/update/report" method="post" class="col-11 p-4 my-4 bg-dark text-light mx-auto">
+        <h2 class="text-primary">Add a New Report</h2>
+        {% with messages = get_flashed_messages(category_filter=['sighting']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Flash AHHHHHHH!!!!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="d-flex justify-content-between col-9">
+            <input type="hidden" name="id" value={{edit.id}}>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="location" class = "font-weight-bold">Location:</label>
+                    <textarea name="location" cols="30" rows = "5" class="form-control">{{edit.location}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="what_happened">What Happened:</label>
+                    <textarea name="what_happened"  cols="30" rows="5" class="form-control">{{edit.what_happened}}</textarea>
+                </div>
+
+        </div>
+            <div class="col-4">
+
+                <div class="form-group">
+                    <label for="date">Date Seen:</label>
+                    <input type="date" name="date" value="{{edit.date.strftime('%Y-%m-%d')}}" class="form-control">
+                </div>
+                <label for="number">Number of Squatches:</label>
+                <div class="input-group-text bg-dark">
+                    <input type="number" id="quantity" name="number" min="1" max="100000000" value = "{{edit.number}}">
+                </div>
+                <br>
+                <input type="submit" value="Edit Report" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    
+</body>
+</html>

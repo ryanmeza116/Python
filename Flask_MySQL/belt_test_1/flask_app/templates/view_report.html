@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>View Report</title>
+    
+</head>
+<body>
+    <nav class = "d-flex justify-content-between align-items-center col-12">
+        <h1> Sasquatch Websighting</h1>
+        <div class = "d-flex col-6 justify-content-between mt-3 px-auto ">
+            <h1 class = "mx-2">{{user.first_name}}</h1>
+            <a href = "/dashboard" class = "btn btn-primary h-25 ">Return Home</a>
+            <a href = "/logout" class = "btn btn-primary h-25">Logout</a>
+        </div>
+    </nav>
+    <div class="card col-10 mx-auto my-5 bg-dark text-light">
+        <div class="card-body">
+            <h2 class="card-title text-primary">{{sighting.location}} on {{sighting.date}}</h2>
+            <h3 class = "card-title text-primary">What happened:</h3>
+            <p class="card-text">  {{sighting.what_happened}}</p>
+            <p>Total number of Squatches seen: {{sighting.number}}</p>
+            <p class="card-text">Reported by {{sighting.users_id}}</p>
+
+        </div>
+    </div>
+
+</body>
+</html>
